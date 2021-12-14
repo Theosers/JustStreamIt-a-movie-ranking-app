@@ -1,0 +1,216 @@
+
+
+
+/* #### Tablets Portrait or Landscape #### */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px){
+    /* some CSS here */
+  }
+  
+  /* #### Desktops #### */
+  @media screen and (min-width: 1024px){
+
+
+    html,body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    h1 {
+        margin: 0px;
+        text-align: center;
+        
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: rgba(51,51,51,0.5);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+    }
+    li a {
+        text-decoration: none;
+    }
+    li {
+        float: left;
+    }
+    .JustStreamIt {
+        width: 100%;
+        padding: 20px 20px;
+        font-size:  50px;
+        color: #6A040F;
+        
+    }
+    
+    .others-nav-button a {
+        color: #E85D04;
+        font-size:  30px;
+        text-align: right;
+        
+        
+        padding: 14px 16px;
+    }
+    li a:hover {
+        background-color: #111;
+    }
+    .All-in-container {
+        background-color: #03071E;
+        width: 100%;
+        padding-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .best-movie-content {
+        margin-top: 5%;
+        margin-bottom: 1%;  
+        border: solid #D00000 1px;
+        
+        height: 450px;
+        width: 80%;
+        background-color: #370617;
+        display: flex;
+        
+        align-items: center;
+    }
+    .best-movie-content > img {
+        padding: 1%;
+        height: 95%;
+        
+    }
+    .best-movie-infos {
+        height: 100%;
+        width: 100%;
+        margin: 0px 50px;
+        padding: 0;
+        text-align: top;
+        color: #F48C06;
+        font-size: 30px;
+    }
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        left: 20%;
+        top: 10%;
+        width: 60%; /* Full width */
+        height: 60%; /* Full height */    
+      }
+      .modal-content {
+        min-width: 800px;
+        background-color: #6A040F;
+        width: 100%;
+        height: 100%;
+      }
+      .modal-infos {
+          width: 100%;
+          
+          height: 100%;
+          background-color:aqua;
+          display: flex;
+          
+      }
+      .modal-pattern {
+        margin: 0;
+        padding-bottom: 5px;
+        color: white;
+        font-size: 20px;
+    }
+      #modal-infos-box {
+          margin: 10px;
+          height: 90%;
+          width: 100%;
+          background-color: black;
+          display: flex;
+          flex-direction: column;
+          flex-basis: 800px;
+          
+
+      }
+      #image-modal {
+          padding: 10px;
+          
+      }
+      #title-modal {
+          align-self: center;
+          padding-bottom: 5%;
+          font-size: 30px;
+
+      }
+      
+      .close {
+          padding-right: 10px;
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    .super {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin-left: 100px;
+    }
+    
+    .new-releases {
+        height: 300px;
+        width: 1500px;
+        
+        background-color:#370617;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        
+    }
+    .box {
+        height: 90%;
+        width: 13%;
+        
+        
+       
+       
+    }
+    .box:nth-of-type(1) {
+        background-color: indianred;
+    }
+    .box:nth-of-type(2) {
+        background-color:mediumaquamarine;
+    }
+    .box:nth-of-type(3) {
+        background-color: indianred;
+    }
+    .box:nth-of-type(4) {
+        background-color:mediumaquamarine;
+    }
+    .box:nth-of-type(5) {
+        background-color: indianred;
+    }
+    .box:nth-of-type(6) {
+        background-color:mediumaquamarine;
+    }
+    .box:nth-of-type(7) {
+        background-color: indianred;
+    }
+    
+    
+    .category-one {
+        height: 300px;
+        background-color:chartreuse;
+    }
+    
+    
+
+
+
+  }
