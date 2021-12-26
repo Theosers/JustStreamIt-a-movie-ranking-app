@@ -1,18 +1,17 @@
 var bestMovie = document.getElementsByClassName('best-movie');
 var myBoxImage = document.getElementsByClassName('box');
 var imageData = {};
-var page = 0;
-var pageAnimation = 0;
-var pageAction = 0;
-var pageAdventure = 0;
+var page = 1;
+var pageAnimation = 1;
+var pageAction = 1;
+var pageAdventure = 1;
+
+
 
 var onClickRight = document.querySelectorAll("#Best-movies-onClick-right");
 var onClickLeft = document.querySelectorAll("#Best-movies-onClick-left");
-bestImage();
-changeImagesRight();
-changeImagesRightAnimation();
-changeImagesRightAction();
-changeImagesRightAdventure();
+allImagesLoaded();
+
 
 onClickRight[0].onclick = changeImagesRight;
 onClickLeft[0].onclick = changeImagesLeft;
@@ -74,7 +73,7 @@ function modal_func(nom) {
 
 }
 
-function bestImage() {
+function allImagesLoaded() {
     
     fetch("http://localhost:8000/api/v1/titles/?page=1&sort_by=-imdb_score&page_size=1")
     .then(function(res) {
@@ -123,41 +122,144 @@ function bestImage() {
     .catch(function(err) {
         // Une erreur est survenue
     });
+    async function bestMovies() {
+
+        const response = await fetch("http://localhost:8000/api/v1/titles/?page=1&sort_by=-imdb_score&page_size=8");
+        const value = await response.json();
+        currentImage = [];
+        for (let i = 1; i < 8 ; i++) {  
+            currentImage.push(value['results'][i]['image_url']);
+        }
+        return await currentImage;
+    }
+    bestMovies().then(function(currentImage) {
+        for(j=0; j<7; j++) {
+            myBoxImage[j].attributes[0].textContent = currentImage[j];
+        }
+    })
+    async function Animation() {
+
+        const response = await fetch("http://localhost:8000/api/v1/titles/?page=1&sort_by=-imdb_score&page_size=7&genre=Animation");
+        const value = await response.json();
+        currentImage = [];
+        for(j=0; j<7; j++){
+            currentImage.push(value['results'][j]['image_url']);
+        }
+        return await currentImage;
+    }
+    Animation().then(function(currentImage) {
+        for(j=0; j<7; j++) {
+            myBoxImage[7+j].attributes[0].textContent = currentImage[j];
+        }
+    })
+    async function Action() {
+
+        const response = await fetch("http://localhost:8000/api/v1/titles/?page=1&sort_by=-imdb_score&page_size=7&genre=Action");
+        const value = await response.json();
+        currentImage = [];
+        for(j=0; j<7; j++){
+            currentImage.push(value['results'][j]['image_url']);
+        }
+        return await currentImage;
+    }
+    Action().then(function(currentImage) {
+        for(j=0; j<7; j++) {
+            myBoxImage[14+j].attributes[0].textContent = currentImage[j];
+        }
+    })
+    async function Adventure() {
+
+        const response = await fetch("http://localhost:8000/api/v1/titles/?page=1&sort_by=-imdb_score&page_size=7&genre=Adventure");
+        const value = await response.json();
+        currentImage = [];
+        for(j=0; j<7; j++){
+            currentImage.push(value['results'][j]['image_url']);
+        }
+        return await currentImage;
+    }
+    Adventure().then(function(currentImage) {
+        for(j=0; j<7; j++) {
+            myBoxImage[21+j].attributes[0].textContent = currentImage[j];
+        }
+    })
 
 }
-
+   
 
 function changeImagesRight() {
     page = page + 1;
     if (page === 10733) {
         page = 1;
     }
-    console.log(page);
-    
-    let size = 0;
-    if (page === 1) {
-        size = 8;
-    } else {
-        size = 7;
+    console.log("page ",page)
+
+
+   async function myfetch() {
+       let response = await fetch("http://localhost:8000/api/v1/titles/?page="+page+"&sort_by=-imdb_score&page_size=7")
+       if (response.ok) {
+                    
+        return await response.json();
+       }
+       
+   }
+   myfetch_next = myfetch().then(async function (value) {
+       urls = [];
+    for (let j=0; j < 8; j++){
+
+            urls.push(value['results'][j]['url']);
+            console.log(urls);
+            
+        
     }
-    console.log(size + "  is size");
+    return await urls;
+    })
+    u = [];
+    for (let j=0; j < 7; j++) {
 
+        myfetch_next.then(async function (urls) {
     
-    fetch("http://localhost:8000/api/v1/titles/?page="+page+"&sort_by=-imdb_score&page_size="+size)
-            .then(function(res) {
-                 
-                if (res.ok) {
-                    
-                    return res.json();
+        
+            if (page === 1) { 
+            let response = await fetch(urls[j-1])
+            if (response.ok) {
+                console.log(urls[j-1])
+                return await response.json();
                 }
-            })
-            .then(function(value) { 
+            }else {
 
-                
-                for (let j=size-7; j < size; j++) {
-                    new_j = j;
-                    
-                    url = value['results'][j]['url'];
+                let response = await fetch(urls[j-1])
+            if (response.ok) {
+                console.log(urls[j-1])
+                return await response.json();
+                }
+            }
+            
+        
+        })
+        .then(async function (value) {
+            currentImage = value['image_url'];
+            title = value['title'];
+            genre = value['genres'];
+            date_published = value['date_published'];
+            rated = value['avg_vote'];  
+            imdb_score = value['imdb_score'];
+            directors = value['directors'];
+            actors = value['actors'];
+            duration = value['duration'];
+            country = value['countries'];
+            box_office = value['rated'];
+            resume = value['description'];
+
+            myBoxImage[j-1].attributes[0].textContent = currentImage;
+        })
+    }
+
+        
+            
+                 
+                /*for (let j=size-7; j < size; j++) {
+                    console.log(size)
+                    url = value['results'][k]['url'];
                     window.imageData["bestS"] = [];
                     fetch(url)
                         .then(function(res) {
@@ -167,6 +269,7 @@ function changeImagesRight() {
                             }
                         })
                         .then(function(value) {
+                                console.log(url);
                                 
                                 currentImage = value['image_url'];
                                 title = value['title'];
@@ -182,22 +285,24 @@ function changeImagesRight() {
                                 resume = value['description'];
                                 
                                 window.imageData["bestS"].push([currentImage,title,genre,date_published,rated,imdb_score,directors,actors,duration,country,box_office,resume]);
-                                console.log(j);
-                                myBoxImage[j].attributes[0].textContent = currentImage;
+                                
+                                myBoxImage[k].attributes[0].textContent = currentImage;
                         })
                         .catch(function(err) {
                             // Une erreur est survenue
                         });
-                        console.log("new j " + new_j);
-                    
-                }
                         
-            })
+
+                        k = k + 1;
+                    
+                }*/
+                        
             
+            
+
+
         
-            .catch(function(err) {
-                // Une erreur est survenue
-            });
+            
 }  
 function changeImagesLeft() {
 
@@ -402,3 +507,4 @@ function changeImagesLefttAdventure() {
             // Une erreur est survenue
         });
 }
+
