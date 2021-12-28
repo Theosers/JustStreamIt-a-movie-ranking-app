@@ -197,14 +197,13 @@ function changeImagesRight() {
    async function myfetch() {
        let response = await fetch("http://localhost:8000/api/v1/titles/?page="+page+"&sort_by=-imdb_score&page_size=7")
        if (response.ok) {
-                    
         return await response.json();
        }
        
    }
    myfetch_next = myfetch().then(async function (value) {
        urls = [];
-    for (let j=0; j < 8; j++){
+    for (let j=0; j < 7; j++){
 
             urls.push(value['results'][j]['url']);
             console.log(urls);
@@ -218,25 +217,14 @@ function changeImagesRight() {
 
         myfetch_next.then(async function (urls) {
     
-        
-            if (page === 1) { 
-            let response = await fetch(urls[j-1])
+            let response = await fetch(urls[j])
             if (response.ok) {
-                console.log(urls[j-1])
+                console.log(urls[j])
                 return await response.json();
                 }
-            }else {
-
-                let response = await fetch(urls[j-1])
-            if (response.ok) {
-                console.log(urls[j-1])
-                return await response.json();
-                }
-            }
-            
-        
         })
         .then(async function (value) {
+            
             currentImage = value['image_url'];
             title = value['title'];
             genre = value['genres'];
@@ -250,58 +238,12 @@ function changeImagesRight() {
             box_office = value['rated'];
             resume = value['description'];
 
-            myBoxImage[j-1].attributes[0].textContent = currentImage;
+            myBoxImage[j].attributes[0].textContent = currentImage;
         })
     }
 
         
-            
-                 
-                /*for (let j=size-7; j < size; j++) {
-                    console.log(size)
-                    url = value['results'][k]['url'];
-                    window.imageData["bestS"] = [];
-                    fetch(url)
-                        .then(function(res) {
-                            if (res.ok) {
-                                
-                                return res.json();
-                            }
-                        })
-                        .then(function(value) {
-                                console.log(url);
-                                
-                                currentImage = value['image_url'];
-                                title = value['title'];
-                                genre = value['genres'];
-                                date_published = value['date_published'];
-                                rated = value['avg_vote'];  
-                                imdb_score = value['imdb_score'];
-                                directors = value['directors'];
-                                actors = value['actors'];
-                                duration = value['duration'];
-                                country = value['countries'];
-                                box_office = value['rated'];
-                                resume = value['description'];
-                                
-                                window.imageData["bestS"].push([currentImage,title,genre,date_published,rated,imdb_score,directors,actors,duration,country,box_office,resume]);
-                                
-                                myBoxImage[k].attributes[0].textContent = currentImage;
-                        })
-                        .catch(function(err) {
-                            // Une erreur est survenue
-                        });
-                        
 
-                        k = k + 1;
-                    
-                }*/
-                        
-            
-            
-
-
-        
             
 }  
 function changeImagesLeft() {
