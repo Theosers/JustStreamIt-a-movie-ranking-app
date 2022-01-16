@@ -1,15 +1,3 @@
-
-
-
-/* #### Tablets Portrait or Landscape #### */
-@media screen and (min-device-width: 768px) and (max-device-width: 1024px){
-    /* some CSS here */
-  }
-  
-  /* #### Desktops #### */
-  @media screen and (min-width: 1024px){
-
-
     html,body {
         margin: 0;
         padding: 0;
@@ -47,7 +35,7 @@
         
     }
     
-    .others-nav-button a {
+    li > a {
         color: #E85D04;
         font-size:  30px;
         text-align: right;
@@ -83,12 +71,14 @@
         height: 95%;
         
     }
+    .bestMovieResume {
+        
+    }
     .best-movie-infos {
         height: 100%;
         width: 100%;
         margin: 0px 50px;
         padding: 0;
-        text-align: top;
         color: #F48C06;
         font-size: 30px;
     }
@@ -213,4 +203,4 @@
 
 
 
-  }
+  
