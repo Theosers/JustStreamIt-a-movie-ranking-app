@@ -1,4 +1,4 @@
-# PriceWise-2.0.0(Books Scraper)
+# JustStreamIt
 
 ## Table of Contents
 
