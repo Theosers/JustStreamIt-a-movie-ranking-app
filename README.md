@@ -9,6 +9,10 @@
 
 Web application that would provide real-time visualization of a ranking of intriguing movies. User interface (FrontEnd) for a Python-based web application. 
 
+Before being able to see the website you will need to launch the Api REST following this repository first : https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR
+
+Then, Download this repository, launch the server and you can open index.html in your browser to see the website.
+
 Below, the last technologies added to the project :
   
   -   Retrieving movie data from an API (OCMovies-API) using AJAX requests.
